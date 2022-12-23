@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>图书馆管理系统</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top " style="background:purple">
+            <div class="container ">
+                <div class="navbar-header  text-dark">
+                    <a class="navbar-brand " style="padding-left: 550px;">图书馆管理系统</a>
+                </div>
+            </div>
+        </nav>
+        <br>
+        <br>
+        <div class="jumbotron">
+            <div class="container ">
+                <h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp本图书馆欢迎您</h1>
+            </div>
+        </div>
+
+        <div class="container ">
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="panel panel-info" style="background-color:rgb(128, 128, 128); height: 500px;">
+                        <div class ="panel-heading " style="background:rgb(128, 128, 128)">
+                            <h2>图书查询</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p>点击下面按钮进入查询页面.</p>
+                            <p><a class="btn btn-dark" href="SearchBookController" role="button">图书查询 &raquo;</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-info" style="background-color:rgb(128, 128, 128); height: 500px;">
+                        <div class ="panel-heading " style="background:rgb(128, 128, 128)">
+                            <h2>借阅</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p>点击按钮进入借阅界面.</p>
+                            <p><a class="btn btn-dark" href="BookLoanController" role="button">借阅详情 &raquo;</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-info" style="background-color:rgb(128, 128, 128); height: 500px;">
+                        <div class ="panel-heading " style="background:rgb(128, 128, 128)">
+                            <h2>罚款跟踪</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p>点击按钮进入罚款情况页面.</p>
+                            <p><a class="btn btn-dark" href="FineTrackingController" role="button">罚款详情 &raquo;</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-info" style="background-color:rgb(128, 128, 128); height: 500px;">
+                        <div class ="panel-heading " style="background:rgb(128, 128, 128)">
+                            <h2>新用户?</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p>点击按钮进入用户注册界面.</p>
+                            <p><a class="btn btn-dark" href="NewBorrowerController" role="button">创建新用户 &raquo;</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </body>
+</html>
