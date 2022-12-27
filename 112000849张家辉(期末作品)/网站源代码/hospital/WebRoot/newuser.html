@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>新用户</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js">
+    <link rel="stylesheet" href="newser.css">
+</head>
+<body >
+  <!--new user register page-->
+<div class="new">
+        <form class="ui form" method="post" action="success.jsp">
+        <br><br>
+                <h3 class="ui dividing header">填写信息</h3>
+                <div class="field">
+                  <div class="two fields">
+                    <div class="field">
+                    
+                  <label>姓名</label>
+                      <input type="text" name="name" placeholder="姓名">
+                    </div>
+                    <div class="field">
+                    
+                  <label>密码</label>
+                      <input type="text" name="pwd" placeholder="密码">
+                    </div>
+                   
+                  </div>
+                </div>
+                <div class="two fields">
+                  <div class="field">
+                    <label>联系电话</label>
+                    <input type="number" name="pno" placeholder="电话">
+                    
+                  </div>
+                  <div class="field">
+                    <label for="">邮箱</label>
+                    <input type="text" name="pemail" placeholder="邮箱">
+                  </div>
+                </div>
+                <div class= "three fields">
+                    <div class="field">
+                  <label>地址</label>
+                    <input type="text" name="street" placeholder="地址">
+                    </div>
+                    <div class=" field">
+                      <label for="">地区</label>
+                      <input type="text" name="area" placeholder="地区">
+                    </div>
+                    <div class="field">
+                      <label for="">社保卡号</label>
+                      <input type="number" name="aadhar" placeholder="社保卡号">
+                    </div>
+                 
+                </div>
+                <div class="two fields">
+                  <div class="field">
+                    <label>省份</label>
+                    <select class="ui fluid dropdown" name="state">
+                      <option value="state" >省份</option>
+                  <option value="福建">福建</option>
+                  <option value="广东">广东</option>
+                  <option value="浙江">浙江</option>
+                  <option value="江西">江西</option>
+                  <option value="新疆">新疆</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label>国家</label>
+                   <div class="field">
+                    
+                    <select class="ui fluid dropdown" name="country">
+                      <option value="country">国家</option>
+                  <option value="中国">中国</option>
+                    </select>
+                  </div>
+                     </div>
+                  </div>
+               <a href="success.jsp">
+                   <center><button  class="ui green button">提交</button></center>
+                    </a>
+       
+              </form>
+            </div>  
+</body>
+</html>
