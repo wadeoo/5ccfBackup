@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+  <container path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/com.genuitec.embedded.tomcat.runtime.v90">
+    <disable name="mysql-connector-java-5.1.28-bin.jar" type="custom_jar"/>
+    <disable name="mail-1.4.jar" type="custom_jar"/>
+    <custom-jar path="D:lib/BASIC/Desktop/ChromeDownloads/mail-1.4.jar"/>
+    <custom-jar path="D:lib/BASIC/Desktop/ChromeDownloads/ccf/javax.mail-1.6.2.jar"/>
+  </container>
+</project>
