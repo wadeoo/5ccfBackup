@@ -42,7 +42,6 @@ public class BookLoanController extends HttpServlet {
         if (request.getParameter(Constants.BOOK_LOAN_REQ_TYPE) == null || request.getParameter(Constants.BOOK_LOAN_REQ_TYPE).equals(Constants.BOOK_LOAN_REQ_CHECKOUT_TYPE)) {
 
             if ((request.getParameter(Constants.BOOK_LOAN_REQ_BOOK_ID) == null && request.getParameter(Constants.BOOK_LOAN_REQ_BRANCH_ID) == null && request.getParameter(Constants.BOOK_LOAN_REQ_CARD_NO) == null)) {
-                //First time. No data present
                 RequestDispatcher rd = request.getRequestDispatcher("BookLoan.jsp");
                 request.setAttribute(Constants.BOOK_LOAN_REQ_TYPE, Constants.BOOK_LOAN_REQ_CHECKOUT_TYPE);
                 request.setAttribute(Constants.HAS_STATUS, false);
@@ -58,7 +57,6 @@ public class BookLoanController extends HttpServlet {
                 rd.forward(request, response);
                 return;
             } else if (request.getParameter(Constants.BOOK_LOAN_REQ_BOOK_ID) != null && request.getParameter(Constants.BOOK_LOAN_REQ_BRANCH_ID) != null && request.getParameter(Constants.BOOK_LOAN_REQ_CARD_NO) == null) {
-                //Coming from the search screen
                 RequestDispatcher rd = request.getRequestDispatcher("BookLoan.jsp");
                 request.setAttribute(Constants.BOOK_LOAN_REQ_BOOK_ID, request.getParameter(Constants.BOOK_LOAN_REQ_BOOK_ID));
                 request.setAttribute(Constants.BOOK_LOAN_REQ_BRANCH_ID, request.getParameter(Constants.BOOK_LOAN_REQ_BRANCH_ID));
@@ -90,7 +88,6 @@ public class BookLoanController extends HttpServlet {
                         return;
                     }
 
-                    //check if bookID exists in the database
                     dbConnection.openConnection();
                     StringBuffer sqlString = new StringBuffer();
 
@@ -100,7 +97,6 @@ public class BookLoanController extends HttpServlet {
                     dbConnection.resultSet = dbConnection.preparedStatement.executeQuery();
                     dbConnection.resultSet.next();
                     if (dbConnection.resultSet.getInt(1) == 0) {
-                        //book id does not exist int the database. Ask to re-enter
                         RequestDispatcher rd = request.getRequestDispatcher("BookLoan.jsp");
                         request.setAttribute(Constants.BOOK_LOAN_REQ_BOOK_ID, request.getParameter(Constants.BOOK_LOAN_REQ_BOOK_ID));
                         request.setAttribute(Constants.BOOK_LOAN_REQ_CARD_NO, request.getParameter(Constants.BOOK_LOAN_REQ_CARD_NO));
@@ -121,7 +117,6 @@ public class BookLoanController extends HttpServlet {
                     dbConnection.resultSet = dbConnection.preparedStatement.executeQuery();
                     dbConnection.resultSet.next();
                     if (dbConnection.resultSet.getInt(1) == 0) {
-                        //branch id does not exist int the database. Ask to re-enter
                         RequestDispatcher rd = request.getRequestDispatcher("BookLoan.jsp");
                         request.setAttribute(Constants.BOOK_LOAN_REQ_BOOK_ID, request.getParameter(Constants.BOOK_LOAN_REQ_BOOK_ID));
                         request.setAttribute(Constants.BOOK_LOAN_REQ_CARD_NO, request.getParameter(Constants.BOOK_LOAN_REQ_CARD_NO));
@@ -142,7 +137,6 @@ public class BookLoanController extends HttpServlet {
                     dbConnection.resultSet = dbConnection.preparedStatement.executeQuery();
                     dbConnection.resultSet.next();
                     if (dbConnection.resultSet.getInt(1) == 0) {
-                        //card no does not exist int the database. Ask to re-enter
                         RequestDispatcher rd = request.getRequestDispatcher("BookLoan.jsp");
                         request.setAttribute(Constants.BOOK_LOAN_REQ_BOOK_ID, request.getParameter(Constants.BOOK_LOAN_REQ_BOOK_ID));
                         request.setAttribute(Constants.BOOK_LOAN_REQ_CARD_NO, request.getParameter(Constants.BOOK_LOAN_REQ_CARD_NO));
@@ -156,7 +150,6 @@ public class BookLoanController extends HttpServlet {
                         return;
                     }
 
-                    //check if the book is available to give out
                     sqlString = new StringBuffer();
                     sqlString.append("SELECT ifnull((bc.no_of_copies - t.borrowed),bc.no_of_copies) as available \n"
                             + "from book_copies as bc \n"
@@ -171,7 +164,6 @@ public class BookLoanController extends HttpServlet {
                     dbConnection.resultSet = dbConnection.preparedStatement.executeQuery();
                     dbConnection.resultSet.next();
                     if (dbConnection.resultSet.getInt(1) == 0) {
-                        //no more copies of the book are available at this branch
                         RequestDispatcher rd = request.getRequestDispatcher("BookLoan.jsp");
                         request.setAttribute(Constants.BOOK_LOAN_REQ_BOOK_ID, request.getParameter(Constants.BOOK_LOAN_REQ_BOOK_ID));
                         request.setAttribute(Constants.BOOK_LOAN_REQ_CARD_NO, request.getParameter(Constants.BOOK_LOAN_REQ_CARD_NO));
@@ -185,7 +177,6 @@ public class BookLoanController extends HttpServlet {
                         return;
                     }
 
-                    //select if this book has already been given out to the same borrower
                     sqlString = new StringBuffer();
                     sqlString.append("SELECT COUNT(*) from book_loans where date_in is null and book_id = ? and branch_id = ? and card_no = ?;");
                     dbConnection.preparedStatement = dbConnection.connect.prepareStatement(sqlString.toString());
@@ -195,7 +186,6 @@ public class BookLoanController extends HttpServlet {
                     dbConnection.resultSet = dbConnection.preparedStatement.executeQuery();
                     dbConnection.resultSet.next();
                     if (dbConnection.resultSet.getInt(1) > 0) {
-                        //card no does not exist int the database. Ask to re-enter
                         RequestDispatcher rd = request.getRequestDispatcher("BookLoan.jsp");
                         request.setAttribute(Constants.BOOK_LOAN_REQ_BOOK_ID, request.getParameter(Constants.BOOK_LOAN_REQ_BOOK_ID));
                         request.setAttribute(Constants.BOOK_LOAN_REQ_CARD_NO, request.getParameter(Constants.BOOK_LOAN_REQ_CARD_NO));
@@ -209,7 +199,6 @@ public class BookLoanController extends HttpServlet {
                         return;
                     }
 
-                    //checking if borrower has less than 3 books
                     sqlString = new StringBuffer();
                     sqlString.append("SELECT COUNT(*) from book_loans where card_no = ? and date_in IS NULL;");
                     dbConnection.preparedStatement = dbConnection.connect.prepareStatement(sqlString.toString());
@@ -217,7 +206,6 @@ public class BookLoanController extends HttpServlet {
                     dbConnection.resultSet = dbConnection.preparedStatement.executeQuery();
                     dbConnection.resultSet.next();
                     if (dbConnection.resultSet.getInt(1) >= 3) {
-                        //card no does not exist int the database. Ask to re-enter
                         RequestDispatcher rd = request.getRequestDispatcher("BookLoan.jsp");
                         request.setAttribute(Constants.BOOK_LOAN_REQ_BOOK_ID, request.getParameter(Constants.BOOK_LOAN_REQ_BOOK_ID));
                         request.setAttribute(Constants.BOOK_LOAN_REQ_CARD_NO, request.getParameter(Constants.BOOK_LOAN_REQ_CARD_NO));
@@ -231,13 +219,12 @@ public class BookLoanController extends HttpServlet {
                         return;
                     }
 
-                    //Every checking is done now. Insert the data
                     sqlString = new StringBuffer();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     Date currentDate = new Date();
                     Calendar c = Calendar.getInstance();
-                    c.setTime(currentDate); // Now use today date.
-                    c.add(Calendar.DATE, 14); // Adding 14 days
+                    c.setTime(currentDate); 
+                    c.add(Calendar.DATE, 14); 
                     String output = sdf.format(c.getTime());
                     sqlString.append("insert into book_loans (book_id,branch_id,card_no,date_out,due_date) values (?,?,?,?,?);");
                     dbConnection.preparedStatement = dbConnection.connect.prepareStatement(sqlString.toString());

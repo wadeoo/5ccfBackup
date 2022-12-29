@@ -37,12 +37,10 @@ public class NewBorrowerController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         if (request.getParameter(Constants.NEW_BORROWER_REQ_FNAME) == null && request.getParameter(Constants.NEW_BORROWER_REQ_LNAME) == null && request.getParameter(Constants.NEW_BORROWER_REQ_EMAIL) == null && request.getParameter(Constants.NEW_BORROWER_REQ_ADDRESS) == null && request.getParameter(Constants.NEW_BORROWER_REQ_CITY) == null && request.getParameter(Constants.NEW_BORROWER_REQ_STATE) == null && request.getParameter(Constants.NEW_BORROWER_REQ_PHONE) == null) {
-            //first time
             RequestDispatcher rd = request.getRequestDispatcher("BorrowerManagement.jsp");
             request.setAttribute(Constants.HAS_STATUS, false);
             rd.forward(request, response);
         } else if (request.getParameter(Constants.NEW_BORROWER_REQ_FNAME).equalsIgnoreCase("") && request.getParameter(Constants.NEW_BORROWER_REQ_LNAME).equalsIgnoreCase("") && request.getParameter(Constants.NEW_BORROWER_REQ_EMAIL).equalsIgnoreCase("") && request.getParameter(Constants.NEW_BORROWER_REQ_ADDRESS).equalsIgnoreCase("") && request.getParameter(Constants.NEW_BORROWER_REQ_CITY).equalsIgnoreCase("") && request.getParameter(Constants.NEW_BORROWER_REQ_STATE).equalsIgnoreCase("") && request.getParameter(Constants.NEW_BORROWER_REQ_PHONE).equalsIgnoreCase("")) {
-            //nothing entered
             RequestDispatcher rd = request.getRequestDispatcher("BorrowerManagement.jsp");
             request.setAttribute(Constants.HAS_STATUS, true);
             request.setAttribute(Constants.STATUS_TYPE, STATUS_TYPE.WARNING);
@@ -81,7 +79,6 @@ public class NewBorrowerController extends HttpServlet {
                 dbConnection.resultSet = dbConnection.preparedStatement.executeQuery();
                 dbConnection.resultSet.next();
                 if (dbConnection.resultSet.getInt(1) > 0) {
-                    //borrower record already exists
                     RequestDispatcher rd = request.getRequestDispatcher("BorrowerManagement.jsp");
                     request.setAttribute(Constants.HAS_STATUS, true);
                     request.setAttribute(Constants.STATUS_TYPE, STATUS_TYPE.ERROR);

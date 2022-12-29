@@ -28,7 +28,6 @@ public class SearchBookController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         if ((request.getParameter(Constants.BOOK_SEARCH_CONTROLLER_REQ_BOOK_ID) == null && request.getParameter(Constants.BOOK_SEARCH_CONTROLLER_REQ_TITLE) == null && request.getParameter(Constants.BOOK_SEARCH_CONTROLLER_REQ_AUTHORS) == null)) {
-            //First time call
             RequestDispatcher rd = request.getRequestDispatcher("SearchBook.jsp");
             request.setAttribute(Constants.HAS_STATUS, false);
             rd.forward(request, response);

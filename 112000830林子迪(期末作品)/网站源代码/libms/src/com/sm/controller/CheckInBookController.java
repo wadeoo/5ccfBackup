@@ -47,7 +47,6 @@ public class CheckInBookController extends HttpServlet {
             request.setAttribute(Constants.STATUS_BODY, "输入还书日期yyyy-MM-dd");
             rd.forward(request, response);
         } else {
-            //insert the check in date into the book_loans table
             DatabaseConnection dbConnection = new DatabaseConnection();
             try {
                 String sqlString = new String();

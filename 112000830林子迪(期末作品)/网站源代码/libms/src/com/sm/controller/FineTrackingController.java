@@ -40,13 +40,11 @@ public class FineTrackingController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         if (request.getParameter(Constants.FINE_REQ_BORROWER_NAME) == null && request.getParameter(Constants.FINE_REQ_CARD_NO) == null) {
-            //first time
             RequestDispatcher rd = request.getRequestDispatcher("FineTracking.jsp");
             request.setAttribute(Constants.HAS_STATUS, false);
             rd.forward(request, response);
 
         } else if (request.getParameter(Constants.FINE_REQ_BORROWER_NAME).equals("") && request.getParameter(Constants.FINE_REQ_CARD_NO).equals("")) {
-            //nothing entered
             RequestDispatcher rd = request.getRequestDispatcher("FineTracking.jsp");
             request.setAttribute(Constants.HAS_STATUS, true);
             request.setAttribute(Constants.STATUS_TYPE, STATUS_TYPE.WARNING);
